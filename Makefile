@@ -6,7 +6,7 @@
 #    By: fraalmei <fraalmei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/10 09:46:21 by fraalmei          #+#    #+#              #
-#    Updated: 2023/02/17 14:50:30 by fraalmei         ###   ########.fr        #
+#    Updated: 2023/02/27 14:12:08 by fraalmei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ ifeq ($(UNAME), Linux)
 	MLX_DIR		= mlx_Linux
 	MLX_FLAGS	= -Imlx_Linux -Lmlx_Linux -lmlx_Linux -lXext -lX11 -lm -lz
 	INCLUDES	= -I$(INCLUDE_DIR) \
-				  -I(LIBFT_DIR) \
+				  -I$(LIBFT_DIR) \
 				  -I/usr/include
 	LIBS		= -L$(LIBFT_DIR) -lft \
 				  -L/usr/lib
@@ -57,48 +57,57 @@ ifeq ($(UNAME), Darwin)
 endif
 
 # Directories
-BUILD_DIR	= build
-SRC_DIR		= ./srcs
-SRCS		=	so_long.c
-LIBFT_DIR = ../libft
-INCLUDE_DIR	= includes
+BIN_DIR		= bin
+SRC_DIR		= srcs
+SRCS		= so_long.c window.c
+LIBFT_DIR 	= ../libft			# path to libft library
+INCLUDE_DIR	= include			# path to headers
+ASSETS_DIR	= assets			# path to assets
 
-OBJS = $(SRCS:%.c=$(BUILD_DIR)/%.o)
+# Convert source files to binary
+OBJS = $(SRCS:%.c=$(BIN_DIR)/%.o)
 
 all: $(NAME)
 
 restart: $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(INCLUDES) $(LIBS) $(MLX_FLAGS) -o $(NAME)
 
-
-$(NAME): $(OBJS) libs
+$(NAME): $(BIN) $(OBJS) | libs
 	$(CC) $(CFLAGS) $(OBJS) $(LIBS) $(MLX_FLAGS) -o $(NAME)
 
 #	Objects construction
-$(OBJS): $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
+$(OBJS): $(BIN_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(@D)
 	@$(CC) -g $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 #	Libraries compile
 libs:
-	@make -C $(LIBFT_DIR)
-	@make -C $(MLX_DIR)
+	make -C $(LIBFT_DIR)
+	make -C $(MLX_DIR)
 
 re: fclean all
 
-#	
 cbuild:
-	-$(RM) -r $(BUILD_DIR)
+	$(RM) -r $(BIN_DIR)
 
 clean:
 	$(RM) $(OBJS)
 	make clean -C $(LIBFT_DIR)
 	make clean -C $(MLX_DIR)
-	$(RM) -r $(BUILD_DIR)
+	$(RM) -r $(BIN_DIR)
 
 fclean: clean
 	make fclean -C $(LIBFT_DIR)
 	make fclean -C $(MLX_DIR)
 	$(RM) $(NAME)
 
-.PHONY: all clean fclean re
+show:
+	@printf "UNAME		: $(UNAME)\n"
+	@printf "NAME		: $(NAME)\n"
+	@printf "CC  		: $(CC)\n"
+	@printf "CFLAGS		: $(CFLAGS)\n"
+	@printf "MLX_FLAGS	: $(MLX_FLAGS)\n"
+	@printf "SRCS		: $(SRCS)\n"
+	@printf "OBJS		: $(OBJS)\n"
+
+.PHONY: $(LIBFT) all clean fclean re
