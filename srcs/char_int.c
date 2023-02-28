@@ -1,46 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   colors.c                                           :+:      :+:    :+:   */
+/*   char_int.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fraalmei <fraalmei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/27 16:23:11 by fraalmei          #+#    #+#             */
-/*   Updated: 2023/02/28 17:13:15 by fraalmei         ###   ########.fr       */
+/*   Created: 2023/02/28 17:37:19 by fraalmei          #+#    #+#             */
+/*   Updated: 2023/02/28 17:45:13 by fraalmei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
 
-	// function to generate the color
-	// return a integer (4 bytes)
-	// every byte represents opacity, red, green and blue
-	// if any of the values are wrong, return 0
-	// else, set the parameters to the bytes
-int	gen_trgb(int opacity, int red, int green, int blue)
+int	create_trgb(unsigned char opacity, unsigned char red, \
+		unsigned char green, unsigned char blue)
 {
 	if (opacity > 255 || red > 255 || green > 255 || blue > 255)
 		return (0);
-	return (opacity << 24 | red << 16 | green << 8 | blue);
+	return (*(int *)(unsigned char [4]){blue, green, red, opacity});
 }
 
 	// return a int of the required byte
-int	get_opacity(int trgb)
+unsigned char	get_opacity(int trgb)
 {
-	return ((trgb >> 24) & 0XFF);
+	return (((unsigned char *)&trgb)[3]);
 }
 
-int	get_r(int trgb)
+unsigned char	get_r(int trgb)
 {
-	return ((trgb >> 16) & 0XFF);
+	return (((unsigned char *)&trgb)[2]);
 }
 
-int	get_g(int trgb)
+unsigned char	get_g(int trgb)
 {
-	return ((trgb >> 8) & 0XFF);
+	return (((unsigned char *)&trgb)[1]);
 }
 
-int	get_b(int trgb)
+unsigned char	get_b(int trgb)
 {
-	return (trgb & 0XFF);
+	return (((unsigned char *)&trgb)[0]);
 }

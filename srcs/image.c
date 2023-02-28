@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   image.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fraalmei <fraalmei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/10 08:12:07 by fraalmei          #+#    #+#             */
-/*   Updated: 2023/02/28 14:37:05 by fraalmei         ###   ########.fr       */
+/*   Created: 2023/02/28 11:30:26 by fraalmei          #+#    #+#             */
+/*   Updated: 2023/02/28 18:07:56 by fraalmei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include <so_long.h>
 
-# include <libft.h>
-# include <mlx.h>
+	// function to put a pixel in the window
+void	pixel_put(t_img *img, int x, int y, int color)
+{
+	char	*dst;
 
-# include <window.h>
-# include <keys.h>
-
-extern int	size;
-extern int	follow;
-extern int	color;
-
-#endif
+	dst = img->addr + (y * img->line_len + x * (img->bpp / 8));
+	*(unsigned int *)dst = color;
+}
