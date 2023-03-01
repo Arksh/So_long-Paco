@@ -6,7 +6,7 @@
 /*   By: fraalmei <fraalmei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 12:41:15 by fraalmei          #+#    #+#             */
-/*   Updated: 2023/02/28 11:32:47 by fraalmei         ###   ########.fr       */
+/*   Updated: 2023/03/01 17:04:37 by fraalmei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,3 +31,28 @@ int	exit_program(t_win *window)
 		mlx_destroy_window (window->mlx_ptr, window->win_ptr);
 	exit(EXIT_SUCCESS);
 }
+
+/* t_win	new_window(int w, int h, char *str)
+{
+	void	*mlx_ptr;
+	t_win	win;
+
+	mlx_ptr = mlx_init();
+	win = (t_win){mlx_ptr, mlx_new_window(mlx_ptr, w, h, str), \
+		w, h, (t_rect){0, 0, w, h, 0x00a4ff32}};
+	return (win);
+}
+ */
+/* t_win	new_window(int w, int h, char *str) {
+	void *	mlx_ptr;
+	t_win	win;
+
+	mlx_ptr = mlx_init();
+	win = (t_win){mlx_ptr,
+		mlx_new_window(mlx_ptr, w, h, str),
+		w,
+		h,
+		(t_rect){0, 0, w, h, 0x00a4ff32}};
+	return (win);
+}
+ */

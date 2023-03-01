@@ -6,7 +6,7 @@
 #    By: fraalmei <fraalmei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/10 09:46:21 by fraalmei          #+#    #+#              #
-#    Updated: 2023/02/28 18:07:30 by fraalmei         ###   ########.fr        #
+#    Updated: 2023/03/01 17:11:01 by fraalmei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,7 +59,7 @@ endif
 # Directories
 BIN_DIR		= bin
 SRC_DIR		= srcs
-SRCS		= so_long.c image.c colors.c color_utils.c
+SRCS		= so_long.c image.c colors.c color_utils.c window.c keys.c figures.c penguin.c
 LIBFT_DIR 	= ../libft			# path to libft library
 INCLUDE_DIR	= include			# path to headers
 ASSETS_DIR	= assets			# path to assets

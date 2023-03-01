@@ -6,7 +6,7 @@
 /*   By: fraalmei <fraalmei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 08:12:07 by fraalmei          #+#    #+#             */
-/*   Updated: 2023/02/28 14:37:05 by fraalmei         ###   ########.fr       */
+/*   Updated: 2023/03/01 14:39:18 by fraalmei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,5 @@
 
 # include <window.h>
 # include <keys.h>
-
-extern int	size;
-extern int	follow;
-extern int	color;
 
 #endif
