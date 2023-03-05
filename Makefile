@@ -39,6 +39,7 @@ ifeq ($(UNAME), Linux)
 	MLX_FLAGS	= -Imlx_Linux -Lmlx_Linux -lmlx_Linux -lXext -lX11 -lm -lz
 	INCLUDES	= -I$(INCLUDE_DIR) \
 				  -I$(LIBFT_DIR) \
+				  -I$(MLX_DIR) \
 				  -I/usr/include
 	LIBS		= -L$(LIBFT_DIR) -lft \
 				  -L/usr/lib
