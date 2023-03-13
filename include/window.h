@@ -6,101 +6,83 @@
 /*   By: fraalmei <fraalmei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 10:48:45 by fraalmei          #+#    #+#             */
-/*   Updated: 2023/03/01 17:11:13 by fraalmei         ###   ########.fr       */
+/*   Updated: 2023/03/13 17:29:56 by fraalmei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WINDOW_H
 # define WINDOW_H
 
-	// structure whith the elements of the window of the program
-	// mlx_ptr	=> pointer to the iniciation of the program
-	// win_ptr	=> pointer to the window
-	// height	=> the altitude of the window
-	// width	=> the amplitude of the window
+# include <so_long.h>
+# include <map.h>
+
+typedef struct s_size
+{
+	size_t		width;
+	size_t		height;
+}				t_size;
+
 typedef struct s_win
 {
+	void		*mlx_ptr;
+	void		*win_ptr;
+	int			height;
+	int			width;
+}				t_win;
+
+typedef struct s_location
+{
+	void				*img;
+	int					x;
+	int					y;
+	struct s_location	*next;
+}						t_location;
+
+typedef struct s_map
+{
+	struct s_location	*init;
+	int					x;
+	int					y;
+}						t_map;
+
+typedef struct s_prog
+{
+	t_win			win;
+	t_map			*map;
+}					t_prog;
+
+/* typedef struct s_program
+{
+	char	*name;
 	void	*mlx_ptr;
 	void	*win_ptr;
-	int		height;
 	int		width;
-}			t_win;
+	int		height;
+	int		x;
+	int		y;
+	void	*img;
+} */
 
-	// structure whith the elements of an image
-	// win			=> window to which the image belongs
-	// *img_ptr		=> pointer to the image
-	// *addr		=> is the address of the bytes of the image (byte = 1 pixel)
-	// h			=> height
-	// w			=> width
-	// bpp			=> bits per pixel
-	// endian		=> format of the data
-	// line_len		=> number of bytes one line holds (in the addrs)
-typedef struct s_img
-{
-	t_win	win;
-	void	*img_ptr;
-	char	*addr;
-	int		h;
-	int		w;
-	int		bpp;
-	int		endian;
-	int		line_len;
-}			t_img;
+	// window
+t_win		new_program(int w, int h, char *str);
+int			exit_program(t_win *window);
+void		put_map_to_window(int loc_widht, int loc_height, t_prog data);
 
-	//structure mwhith the elements of a square
-	// x and y	=> represent the start of the square (top left corner)
-	// size		=> height and width of the square
-	// color	=> the color of the square
-typedef struct s_square
-{
-	unsigned short int	x;
-	unsigned short int	y;
-	unsigned short int	size;
-	int					color;
-}						t_square;
+	// map
+t_prog		read_map(char *argv);
+t_size		map_size(char *argv);
+int			check_map(char *argv, t_size size);
+t_map		*create_map(int file, t_prog data);
+t_map		*new_map(t_location *init, int x, int y);
 
-typedef struct s_circle
-{
-	unsigned short int		x;
-	unsigned short int		y;
-	unsigned short int		radius;
-	int						color;
-}				t_circle;
+	// locations
+t_location	*new_location(char *img, int x, int y);
+void		add_location_back(t_location **list, t_location *new_loc);
+t_location	*last_loc(t_location *loc);
 
-	// structure to create a rectangle and use it as background
-typedef struct s_rect
-{
-	unsigned short int		x;
-	unsigned short int		y;
-	unsigned short int		size_w;
-	unsigned short int		size_h;
-	int						color;
-}						t_rect;
-
-void	put_pixel(t_img img, int x, int y, int color);
-t_img	new_img(int w, int h, t_win window);
-
-int		gen_trgb(int opacity, int red, int green, int blue);
-
-int		get_oppsite_color(int color);
-int		add_shade(double shade, int color);
-
-t_win	new_program(int w, int h, char *str);
-int		exit_program(t_win *window);
-//t_win	new_window(int w, int h, char *str);
-
-int		read_keys(int key_pressed, void *param);
-int		continuous_read_keys(int key_pressed, void *param);
-
-int		get_opacity(int trgb);
-int		get_r(int trgb);
-int		get_g(int trgb);
-int		get_b(int trgb);
-
-void	draw_rect(t_rect rect, t_img img);
-void	draw_circle(t_circle circle, t_img img);
-void	draw_square(t_square square, t_img img);
-
-void	penguin(t_img *img);
+	// images
+t_size		detect_image_size(char *dir);
+int			higher_size_assets(void);
+char		*check_image(char i);
 
 #endif

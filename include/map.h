@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   map.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fraalmei <fraalmei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/10 08:12:07 by fraalmei          #+#    #+#             */
-/*   Updated: 2023/03/10 16:02:13 by fraalmei         ###   ########.fr       */
+/*   Created: 2023/03/10 15:45:27 by fraalmei          #+#    #+#             */
+/*   Updated: 2023/03/11 13:02:09 by fraalmei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef MAP_H
+# define MAP_H
 
-# include <libft.h>
-# include <mlx.h>
-
+# include <so_long.h>
 # include <window.h>
-//# include <keys.h>
-# include <map.h>
+
+
 
 #endif

@@ -6,7 +6,7 @@
 #    By: fraalmei <fraalmei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/10 09:46:21 by fraalmei          #+#    #+#              #
-#    Updated: 2023/03/01 17:11:01 by fraalmei         ###   ########.fr        #
+#    Updated: 2023/03/13 17:27:14 by fraalmei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,8 +28,7 @@ CC		= gcc
 RM		= /bin/rm -f
 
 #	flags
-CFLAGS	= -Wall -Werror -Wextra #-fsanitize=address
-
+CFLAGS	= -Wall -Werror -Wextra #-fsanitize=address -g3
 
 #	Compile a mlx for linux or mac
 UNAME = $(shell uname -s)
@@ -60,7 +59,7 @@ endif
 # Directories
 BIN_DIR		= bin
 SRC_DIR		= srcs
-SRCS		= so_long.c image.c colors.c color_utils.c window.c keys.c figures.c penguin.c
+SRCS		= main.c window.c map.c images.c locations.c
 LIBFT_DIR 	= ../libft			# path to libft library
 INCLUDE_DIR	= include			# path to headers
 ASSETS_DIR	= assets			# path to assets
