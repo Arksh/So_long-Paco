@@ -6,7 +6,7 @@
 #    By: fraalmei <fraalmei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/10 09:46:21 by fraalmei          #+#    #+#              #
-#    Updated: 2023/03/13 17:27:14 by fraalmei         ###   ########.fr        #
+#    Updated: 2023/03/17 17:45:20 by fraalmei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,8 @@ ifeq ($(UNAME), Darwin)
 	MLX_DIR		= mlx
 	MLX_FLAGS	= -L$(MLX_DIR) -lmlx \
 				  -framework OpenGL \
-				  -framework AppKit
+				  -framework AppKit \
+				  -lm
 	INCLUDES	= -I$(INCLUDE_DIR) \
 				  -I$(LIBFT_DIR) \
 				  -I$(MLX_DIR)
@@ -59,7 +60,7 @@ endif
 # Directories
 BIN_DIR		= bin
 SRC_DIR		= srcs
-SRCS		= main.c window.c map.c images.c locations.c
+SRCS		= main.c window.c map.c images.c locations.c check_map.c keys.c objects.c
 LIBFT_DIR 	= ../libft			# path to libft library
 INCLUDE_DIR	= include			# path to headers
 ASSETS_DIR	= assets			# path to assets

@@ -6,29 +6,28 @@
 /*   By: fraalmei <fraalmei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 08:12:10 by fraalmei          #+#    #+#             */
-/*   Updated: 2023/03/13 16:23:35 by fraalmei         ###   ########.fr       */
+/*   Updated: 2023/03/17 16:56:05 by fraalmei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
-#include <window.h>
-#include <map.h>
 
-void leaks()
+void	leaks(void)
 {
-	system ("leaks -q push_swap");
+	system ("leaks -q so_long");
 }
+	//atexit(leaks);
 
 int	main(int argc, char **argv)
 {
 	t_prog	data;
 
-	//atexit(leaks);
 	if (argc != 2)
-		exit (EXIT_SUCCESS);
+		exit_program (NULL, 0);
 	data = read_map(*&argv[1]);
-	//higher_size_assets();
-	put_map_to_window(16, 16, data);
+	put_map_to_window(data);
+	put_objects_map(&data);
+	mlx_key_hook(data.win.win_ptr, read_keys, &data);
 	mlx_hook(data.win.win_ptr, 17, 0, exit_program, &data.win);
 	mlx_loop(data.win.mlx_ptr);
 	return (0);

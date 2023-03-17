@@ -6,7 +6,7 @@
 /*   By: fraalmei <fraalmei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 12:11:50 by fraalmei          #+#    #+#             */
-/*   Updated: 2023/03/01 17:24:45 by fraalmei         ###   ########.fr       */
+/*   Updated: 2023/03/17 16:01:43 by fraalmei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,12 @@
 # define COLOR 8		// key "c"
 # define UP 126			// key "arrow up"
 # define DOWN 125		// key "arrow down"
-# define LEFT 127
-# define RIGHT 128
+# define LEFT 123		// key "arrow left"
+# define RIGHT 124		// key "arrow right"
+# define W 13			// key "arrow W"
+# define S 1			// key "arrow S"
+# define A 0			// key "arrow A"
+# define D 2			// key "arrow D"
 # define PENGUIN 35		// key "p"
 # define RAND_COLOR 15	// key "r"
 
