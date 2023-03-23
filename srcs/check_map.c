@@ -6,13 +6,14 @@
 /*   By: fraalmei <fraalmei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 16:04:16 by p                 #+#    #+#             */
-/*   Updated: 2023/03/15 11:29:48 by fraalmei         ###   ########.fr       */
+/*   Updated: 2023/03/22 18:09:55 by fraalmei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
 
-	// function to call functions to cjeck the necesary element for the map
+	// function to call functions to check the necesary element for the map
+	// return the size of the map if its correct
 t_size	check_map(char *argv)
 {
 	t_size		size;
@@ -46,30 +47,20 @@ int	check_file(char *argv)
 int	check_objects(char *argv)
 {
 	char		*line;
-	int			file;
-	int			i[4];
+	int			i[5];
 
 	i[1] = 0;
 	i[2] = 0;
 	i[3] = 0;
-	file = open(argv, O_RDONLY);
-	line = get_next_line(file);
+	i[4] = open(argv, O_RDONLY);
+	line = get_next_line(i[4]);
 	while (line)
 	{
 		i[0] = 0;
-		while (line[i[0]])
-		{
-			if (line[i[0]] == 'P')
-				i[1]++;
-			else if (line[i[0]] == 'C')
-				i[2]++;
-			else if (line[i[0]] == 'E')
-				i[3]++;
-			i[0]++;
-		}
-		line = (free (line), get_next_line(file));
+		check_line_objects(&*i, line);
+		line = (free (line), get_next_line(i[4]));
 	}
-	(free (line), close (file));
+	(free (line), close (i[4]));
 	if (i[1] != 1 || i[2] == 0 || i[3] != 1)
 		return (-1);
 	return (0);
@@ -104,7 +95,8 @@ int	check_wall(char *argv, t_size size)
 	return (0);
 }
 
-	// functio to check the correct size of the map
+	// function to check the correct size of the map
+	// if the map have not the correct size return 0 in one of the returned args
 t_size	map_size(char *argv)
 {
 	t_size	size;
@@ -119,12 +111,12 @@ t_size	map_size(char *argv)
 	{
 		if (ft_strchr(line, '\n') && size.width + 1 != ft_strlen(line))
 		{
-			size.width = 0;
+			size.width = (free (line), 0);
 			return (size);
 		}
 		else if (!ft_strchr(line, '\n') && size.width != ft_strlen(line))
 		{
-			size.width = 0;
+			size.width = (free (line), 0);
 			return (size);
 		}
 		line = (free(line), size.height++, get_next_line(file));

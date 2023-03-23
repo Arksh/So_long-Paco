@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   bonus.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fraalmei <fraalmei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/10 08:12:10 by fraalmei          #+#    #+#             */
-/*   Updated: 2023/03/23 10:26:30 by fraalmei         ###   ########.fr       */
+/*   Created: 2023/03/23 09:47:33 by fraalmei          #+#    #+#             */
+/*   Updated: 2023/03/23 11:54:13 by fraalmei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int argc, char **argv)
 		exit_program (NULL, 0);
 	data = read_map(*&argv[1]);
 	put_map_to_window(data);
-	put_objects_map(data);
+	put_objects_map(&data);
 	mlx_key_hook(data.win.win_ptr, read_keys, &data);
 	mlx_hook(data.win.win_ptr, 17, 0, exit_program, &data.win);
 	mlx_loop(data.win.mlx_ptr);

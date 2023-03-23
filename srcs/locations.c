@@ -6,14 +6,14 @@
 /*   By: fraalmei <fraalmei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:26:05 by fraalmei          #+#    #+#             */
-/*   Updated: 2023/03/17 17:31:10 by fraalmei         ###   ########.fr       */
+/*   Updated: 2023/03/22 09:37:48 by fraalmei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
 
 	// function to create a new location
-t_location	*new_location(char *img, t_object *objt, t_cords cord, char obj)
+t_location	*new_location(char *img, t_object *objt, t_cords cord, char name)
 {
 	t_location	*loc;
 
@@ -26,7 +26,7 @@ t_location	*new_location(char *img, t_object *objt, t_cords cord, char obj)
 	loc->west = NULL;
 	loc->cords.x = cord.x;
 	loc->cords.y = cord.y;
-	loc->obj = obj;
+	loc->name = name;
 	return (loc);
 }
 
@@ -38,28 +38,25 @@ void	add_location_back(t_location **list, t_location *new_loc)
 
 	west = NULL;
 	north = NULL;
-	if (list)
+	if (*list)
 	{
-		if (*list)
+		if (new_loc->cords.y > 0)
 		{
-			if (new_loc->cords.y > 0)
-			{
-				north = locate_location(*list, new_loc->cords.x, \
-					new_loc->cords.y - 1);
-				new_loc->north = north;
-				north->south = new_loc;
-			}
-			if (new_loc->cords.x > 0)
-			{
-				west = locate_location(*list, new_loc->cords.x - 1, \
-					new_loc->cords.y);
-				new_loc->west = west;
-				west->east = new_loc;
-			}
+			north = locate_location(*list, new_loc->cords.x, \
+				new_loc->cords.y - 1);
+			new_loc->north = north;
+			north->south = new_loc;
 		}
-		else
-			*list = new_loc;
+		if (new_loc->cords.x > 0)
+		{
+			west = locate_location(*list, new_loc->cords.x - 1, \
+				new_loc->cords.y);
+			new_loc->west = west;
+			west->east = new_loc;
+		}
 	}
+	else
+		*list = new_loc;
 }
 
 	// function to find the last position

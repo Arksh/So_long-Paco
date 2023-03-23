@@ -6,12 +6,13 @@
 /*   By: fraalmei <fraalmei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 15:32:43 by fraalmei          #+#    #+#             */
-/*   Updated: 2023/03/17 17:39:09 by fraalmei         ###   ########.fr       */
+/*   Updated: 2023/03/23 10:00:57 by fraalmei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
 
+	// function to create a object
 t_object	*create_object(char *img, t_cords cord, char c)
 {
 	t_object	*object;
@@ -28,98 +29,36 @@ t_object	*create_object(char *img, t_cords cord, char c)
 	return (object);
 }
 
-int	move_up(t_prog *data)
+	// function to check the numbers of collectionables
+	// if the collectables reach 0 open the door
+void	check_collectables(t_location next, t_prog *data)
 {
-	t_location	*swap;
-
-	if (data->player->loc->north->obj != '1')
+	if (next.objt)
 	{
-		mlx_put_image_to_window(data->win.mlx_ptr, data->win.win_ptr, \
-					data->player->loc->img, data->win.size_img.width * \
-					(int)data->player->cords.x, data->win.size_img.height * \
-					(int)data->player->cords.y);
-		data->player->cords.y--;
-		swap = data->player->loc->north;
-		data->player->loc->north->objt = data->player;
-		data->player->loc->objt = NULL;
-		data->player->loc = swap;
-		mlx_put_image_to_window(data->win.mlx_ptr, data->win.win_ptr, \
-					data->player->img, data->win.size_img.width * \
-					(int)data->player->cords.x, data->win.size_img.height * \
-					(int)data->player->cords.y);
-		return (1);
+		if (next.objt->name == 'C')
+		{
+			free(next.objt);
+			next.img = NULL;
+			next.name = '0';
+			data->map->collectables--;
+		}
+		if (data->map->collectables == 0)
+		{
+			data->exit->name = 'O';
+			locate_location(data->map->init, data->exit->cords.x, \
+				data->exit->cords.y)->name = 'O';
+		}
 	}
-	return (0);
 }
 
-int	move_down(t_prog *data)
+	// function to check the door is open
+	// and end the program if its true
+void	check_exit(t_location loc, t_prog *data)
 {
-	t_location	*swap;
-
-	if (data->player->loc->south->obj != '1')
+	if (loc.name == 'O')
 	{
-		mlx_put_image_to_window(data->win.mlx_ptr, data->win.win_ptr, \
-					data->player->loc->img, data->win.size_img.width * \
-					(int)data->player->cords.x, data->win.size_img.height * \
-					(int)data->player->cords.y);
-		data->player->cords.y++;
-		swap = data->player->loc->south;
-		data->player->loc->south->objt = data->player;
-		data->player->loc->objt = NULL;
-		data->player->loc = swap;
-		mlx_put_image_to_window(data->win.mlx_ptr, data->win.win_ptr, \
-					data->player->img, data->win.size_img.width * \
-					(int)data->player->cords.x, data->win.size_img.height * \
-					(int)data->player->cords.y);
-		return (1);
+		loc.img = NULL;
+		loc.name = '0';
+		exit_program(&data->win, 3);
 	}
-	return (0);
-}
-
-int	move_left(t_prog *data)
-{
-	t_location	*swap;
-
-	if (data->player->loc->west->obj != '1')
-	{
-		mlx_put_image_to_window(data->win.mlx_ptr, data->win.win_ptr, \
-					data->player->loc->img, data->win.size_img.width * \
-					(int)data->player->cords.x, data->win.size_img.height * \
-					(int)data->player->cords.y);
-		data->player->cords.x--;
-		swap = data->player->loc->west;
-		data->player->loc->west->objt = data->player;
-		data->player->loc->objt = NULL;
-		data->player->loc = swap;
-		mlx_put_image_to_window(data->win.mlx_ptr, data->win.win_ptr, \
-					data->player->img, data->win.size_img.width * \
-					(int)data->player->cords.x, data->win.size_img.height * \
-					(int)data->player->cords.y);
-		return (1);
-	}
-	return (0);
-}
-
-int	move_right(t_prog *data)
-{
-	t_location	*swap;
-
-	if (data->player->loc->east->obj != '1')
-	{
-		mlx_put_image_to_window(data->win.mlx_ptr, data->win.win_ptr, \
-					data->player->loc->img, data->win.size_img.width * \
-					(int)data->player->cords.x, data->win.size_img.height * \
-					(int)data->player->cords.y);
-		data->player->cords.x++;
-		swap = data->player->loc->east;
-		data->player->loc->east->objt = data->player;
-		data->player->loc->objt = NULL;
-		data->player->loc = swap;
-		mlx_put_image_to_window(data->win.mlx_ptr, data->win.win_ptr, \
-					data->player->img, data->win.size_img.width * \
-					(int)data->player->cords.x, data->win.size_img.height * \
-					(int)data->player->cords.y);
-		return (1);
-	}
-	return (0);
 }

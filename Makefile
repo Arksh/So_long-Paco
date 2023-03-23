@@ -6,7 +6,7 @@
 #    By: fraalmei <fraalmei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/10 09:46:21 by fraalmei          #+#    #+#              #
-#    Updated: 2023/03/17 17:45:20 by fraalmei         ###   ########.fr        #
+#    Updated: 2023/03/23 12:08:33 by fraalmei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,9 @@ CC		= gcc
 RM		= /bin/rm -f
 
 #	flags
-CFLAGS	= -Wall -Werror -Wextra #-fsanitize=address -g3
+CFLAGS	= -Wall -Werror -Wextra
+
+LEAK_FLAGS	= -fsanitize=address -g3
 
 #	Compile a mlx for linux or mac
 UNAME = $(shell uname -s)
@@ -46,6 +48,8 @@ endif
 
 ifeq ($(UNAME), Darwin)
 #	SRCS_PLATFORM	= game_Macos.c
+#	MLX_DIR		= minilibx/minilibx_opengl_20191021
+#	MLX_DIR		= minilibx/minilibx_mms_20200219
 	MLX_DIR		= mlx
 	MLX_FLAGS	= -L$(MLX_DIR) -lmlx \
 				  -framework OpenGL \
@@ -60,7 +64,8 @@ endif
 # Directories
 BIN_DIR		= bin
 SRC_DIR		= srcs
-SRCS		= main.c window.c map.c images.c locations.c check_map.c keys.c objects.c
+SRCS		= main.c window.c map.c images.c locations.c check_map.c keys.c \
+	objects.c movement.c check_map_utils.c
 LIBFT_DIR 	= ../libft			# path to libft library
 INCLUDE_DIR	= include			# path to headers
 ASSETS_DIR	= assets			# path to assets
@@ -87,6 +92,9 @@ libs:
 	make -C $(MLX_DIR)
 
 re: fclean all
+
+leaks: $(OBJS)
+	$(CC) $(CFLAGS) $(LEAK_FLAGS) $(OBJS) $(INCLUDES) $(LIBS) $(MLX_FLAGS) -o $(NAME)
 
 cbuild:
 	$(RM) -r $(BIN_DIR)

@@ -6,18 +6,16 @@
 /*   By: fraalmei <fraalmei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 15:47:55 by fraalmei          #+#    #+#             */
-/*   Updated: 2023/03/17 16:34:26 by fraalmei         ###   ########.fr       */
+/*   Updated: 2023/03/23 11:54:44 by fraalmei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
-#include <dirent.h>
 
 	// open the .xmp files and detect the pixels
 t_size	detect_image_size(char *dir)
 {
 	t_size	size;
-	char	*line;
 	int		file;
 	int		i;
 
@@ -25,6 +23,16 @@ t_size	detect_image_size(char *dir)
 	size.width = 0;
 	size.height = 0;
 	file = open(dir, O_RDONLY);
+	size = count_image_size(i, file, size);
+	close (file);
+	return (size);
+}
+
+	// function to calculate the size of an image
+t_size	count_image_size(int i, int file, t_size size)
+{
+	char	*line;
+
 	line = get_next_line(file);
 	while (line)
 	{
@@ -44,10 +52,12 @@ t_size	detect_image_size(char *dir)
 		}
 		line = (free (line), get_next_line(file));
 	}
-	(free (line), close (file));
+	free (line);
 	return (size);
 }
 
+	// travel all visible characters to detect all files
+	// and detect the  maximun size between them
 t_size	higher_size_assets(void)
 {
 	t_size	size;
@@ -72,22 +82,26 @@ t_size	higher_size_assets(void)
 	return (size);
 }
 
+	// function to check the char of the map and return it file
 char	*check_map_image(char i)
 {
-	if (i == '1')
-		return ("./assets/wall.xpm");
-	else if (i == 'E')
-		return ("./assets/door.xpm");
-	else
-		return ("./assets/floor.xpm");
+	if (i != '1')
+		return ("./textures/floor.xpm");
 	return (NULL);
 }
 
+	// function to check the char of the map and return it file
 char	*check_object_image(char i)
 {
-	if (i == 'P')
-		return ("./assets/player.xpm");
+	if (i == '1')
+		return ("./textures/wall.xpm");
+	else if (i == 'P')
+		return ("./textures/player.xpm");
 	else if (i == 'C')
-		return ("./assets/key.xpm");
+		return ("./textures/key.xpm");
+	else if (i == 'O')
+		return ("./textures/door_closed.xpm");
+	else if (i == 'E')
+		return ("./textures/door_open.xpm");
 	return (NULL);
 }

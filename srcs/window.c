@@ -6,13 +6,14 @@
 /*   By: fraalmei <fraalmei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 12:41:15 by fraalmei          #+#    #+#             */
-/*   Updated: 2023/03/17 15:30:16 by fraalmei         ###   ########.fr       */
+/*   Updated: 2023/03/23 12:07:41 by fraalmei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
 
-t_win	new_program(t_size map, t_size img,char *str)
+	// function to create the program (mlx + window)
+t_win	new_program(t_size map, t_size img, char *str)
 {
 	void	*mlx_ptr;
 
@@ -21,6 +22,7 @@ t_win	new_program(t_size map, t_size img,char *str)
 		str), map, img});
 }
 
+	// function to exit the program
 int	exit_program(t_win *window, int i)
 {
 	if (window)
@@ -31,10 +33,13 @@ int	exit_program(t_win *window, int i)
 		ft_printf("Error, mapa erroneo.\n");
 	else if (i == 2)
 		ft_printf("Error, no existe el archivo.\n");
-	//system("leaks so_long");
+	else if (i == 3)
+		ft_printf("Completado.\n");
 	exit(EXIT_SUCCESS);
 }
+	//system("leaks so_long");
 
+	// function to print the map on the window
 void	put_map_to_window(t_prog data)
 {
 	t_location	*swap_x;
@@ -57,12 +62,13 @@ void	put_map_to_window(t_prog data)
 	}
 }
 
-void	put_objects_map(t_prog *data)
+	// funtion to print the objects on the window
+void	put_objects_map(t_prog data)
 {
 	t_location	*swap_x;
 	t_location	*swap_y;
 
-	swap_y = data->map->init;
+	swap_y = data.map->init;
 	while (swap_y)
 	{
 		swap_x = swap_y;
@@ -70,15 +76,10 @@ void	put_objects_map(t_prog *data)
 		{
 			if (swap_x->objt)
 			{
-				mlx_put_image_to_window(data->win.mlx_ptr, data->win.win_ptr, \
-					swap_x->objt->img, data->win.size_img.width * \
-					(int)swap_x->cords.x, data->win.size_img.height * \
+				mlx_put_image_to_window(data.win.mlx_ptr, data.win.win_ptr, \
+					swap_x->objt->img, data.win.size_img.width * \
+					(int)swap_x->cords.x, data.win.size_img.height * \
 					(int)swap_x->cords.y);
-				if (swap_x->objt->name == 'P')
-				{
-					data->player = swap_x->objt;
-					data->player->loc = swap_x;
-				}
 			}
 			swap_x = swap_x->east;
 		}
