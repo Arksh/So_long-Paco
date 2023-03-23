@@ -6,7 +6,7 @@
 #    By: fraalmei <fraalmei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/10 09:46:21 by fraalmei          #+#    #+#              #
-#    Updated: 2023/03/23 12:08:33 by fraalmei         ###   ########.fr        #
+#    Updated: 2023/03/23 12:14:23 by fraalmei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ LEAK_FLAGS	= -fsanitize=address -g3
 #	Compile a mlx for linux or mac
 UNAME = $(shell uname -s)
 ifeq ($(UNAME), Linux)
-#	SRCS_PLATFORM	= game_Linux.c
+#	MLX_DIR		= minilibx/minilibx-linux
 	MLX_DIR		= mlx_Linux
 	MLX_FLAGS	= -Imlx_Linux -Lmlx_Linux -lmlx_Linux -lXext -lX11 -lm -lz
 	INCLUDES	= -I$(INCLUDE_DIR) \
@@ -47,7 +47,6 @@ ifeq ($(UNAME), Linux)
 endif
 
 ifeq ($(UNAME), Darwin)
-#	SRCS_PLATFORM	= game_Macos.c
 #	MLX_DIR		= minilibx/minilibx_opengl_20191021
 #	MLX_DIR		= minilibx/minilibx_mms_20200219
 	MLX_DIR		= mlx
