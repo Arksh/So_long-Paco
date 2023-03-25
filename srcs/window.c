@@ -6,7 +6,7 @@
 /*   By: fraalmei <fraalmei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 12:41:15 by fraalmei          #+#    #+#             */
-/*   Updated: 2023/03/25 10:21:00 by fraalmei         ###   ########.fr       */
+/*   Updated: 2023/03/25 10:53:37 by fraalmei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int	exit_program(t_win *window, int i)
 		ft_printf("Completado.\n");
 	else if (i == 4)
 		ft_printf("Error al reservar.\n");
+	else if (i == 5)
+		ft_printf("Imagen faltante.\n");
 	exit(EXIT_SUCCESS);
 }
 	//system("leaks so_long");
@@ -83,6 +85,8 @@ void	put_objects_map(t_prog data)
 
 int	put_img(void *img, t_cords cords, t_prog *data)
 {
+	if (!img)
+		exit_program(&data->win, 5);
 	mlx_put_image_to_window(data->win.mlx_ptr, data->win.win_ptr, \
 				img, data->win.size_img.width * \
 				(int)cords.x, data->win.size_img.height * \
