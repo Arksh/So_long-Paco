@@ -6,7 +6,7 @@
 /*   By: fraalmei <fraalmei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 12:41:15 by fraalmei          #+#    #+#             */
-/*   Updated: 2023/03/23 12:07:41 by fraalmei         ###   ########.fr       */
+/*   Updated: 2023/03/24 17:48:53 by fraalmei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int	exit_program(t_win *window, int i)
 		ft_printf("Error, no existe el archivo.\n");
 	else if (i == 3)
 		ft_printf("Completado.\n");
+	else if (i == 4)
+		ft_printf("Error al reservar.\n");
 	exit(EXIT_SUCCESS);
 }
 	//system("leaks so_long");

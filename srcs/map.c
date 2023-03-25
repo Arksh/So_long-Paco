@@ -6,7 +6,7 @@
 /*   By: fraalmei <fraalmei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 15:44:51 by fraalmei          #+#    #+#             */
-/*   Updated: 2023/03/23 10:33:49 by fraalmei         ###   ########.fr       */
+/*   Updated: 2023/03/24 17:59:57 by fraalmei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ t_prog	read_map(char *argv)
 	size_img = higher_size_assets();
 	size_map.width = size_map.width * size_img.width;
 	size_map.height = size_map.height * size_img.height;
-	data.win = new_program(size_map, size_img, "New program");
+	data.win = new_program(size_map, size_img, "So_long");
 	file = open(argv, O_RDONLY);
 	data.map = create_map(file, &data);
 	close (file);
-	if (check_path(data) == 1)
+	if (check_path(data) == 1 || !data.map)
 		exit_program(&data.win, 1);
 	return (data);
 }
@@ -69,10 +69,12 @@ int	read_map_line(char *ln, t_prog *dat, t_cords *i, t_location **init)
 			c += 1;
 		swap_obj = create_object(mlx_xpm_file_to_image(dat->win.mlx_ptr, \
 			check_object_image(ln[i->x]), (int *)&dat->win.size_map.width, \
-			(int *)&dat->win.size_map.height), *i, ln[i->x]);
+			(int *)&dat->win.size_map.height), *i, ln[i->x], dat);
 		swap_loc = new_location(mlx_xpm_file_to_image(dat->win.mlx_ptr, \
 			check_map_image(ln[i->x]), (int *)&dat->win.size_map.width, \
 			(int *)&dat->win.size_map.height), swap_obj, *i, '0');
+		if (!swap_loc)
+			exit_program(&dat->win, 4);
 		detect_p_e(dat, ln[i->x], swap_obj, swap_loc);
 		add_location_back(*&init, swap_loc);
 		i->x++;

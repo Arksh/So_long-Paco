@@ -6,14 +6,14 @@
 /*   By: fraalmei <fraalmei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 08:55:53 by fraalmei          #+#    #+#             */
-/*   Updated: 2023/03/23 10:18:46 by fraalmei         ###   ########.fr       */
+/*   Updated: 2023/03/25 09:38:46 by fraalmei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
 
 	// second part of the funtion to check the necesary objects in the map
-int	check_line_objects(int i[5], char *line)
+int	check_line_objects(int i[6], char *line)
 {
 	while (line[i[0]])
 	{
@@ -23,6 +23,9 @@ int	check_line_objects(int i[5], char *line)
 			i[2]++;
 		else if (line[i[0]] == 'E')
 			i[3]++;
+		else if (line[i[0]] != 'E' && line[i[0]] != 'P' && line[i[0]] != 'C' \
+				&& line[i[0]] != '1' && line[i[0]] != '0' && line[i[0]] != '\n')
+			i[5] = -1;
 		i[0]++;
 	}
 	return (*i);

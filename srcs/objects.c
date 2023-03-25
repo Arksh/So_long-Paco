@@ -6,14 +6,14 @@
 /*   By: fraalmei <fraalmei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 15:32:43 by fraalmei          #+#    #+#             */
-/*   Updated: 2023/03/23 10:00:57 by fraalmei         ###   ########.fr       */
+/*   Updated: 2023/03/24 17:52:19 by fraalmei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
 
 	// function to create a object
-t_object	*create_object(char *img, t_cords cord, char c)
+t_object	*create_object(char *img, t_cords cord, char c, t_prog *data)
 {
 	t_object	*object;
 
@@ -21,6 +21,8 @@ t_object	*create_object(char *img, t_cords cord, char c)
 	if (check_object_image(c))
 	{
 		object = (t_object *)ft_calloc(sizeof(*object), 1);
+		if (!object)
+			exit_program(&data->win, 4);
 		object->img = img;
 		object->name = c;
 		object->cords.x = cord.x;

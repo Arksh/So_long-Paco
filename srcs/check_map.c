@@ -6,7 +6,7 @@
 /*   By: fraalmei <fraalmei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 16:04:16 by p                 #+#    #+#             */
-/*   Updated: 2023/03/22 18:09:55 by fraalmei         ###   ########.fr       */
+/*   Updated: 2023/03/24 18:15:19 by fraalmei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,21 +47,22 @@ int	check_file(char *argv)
 int	check_objects(char *argv)
 {
 	char		*line;
-	int			i[5];
+	int			i[6];
 
 	i[1] = 0;
 	i[2] = 0;
 	i[3] = 0;
 	i[4] = open(argv, O_RDONLY);
+	i[5] = 0;
 	line = get_next_line(i[4]);
-	while (line)
+	while (line && i[5] == 0)
 	{
 		i[0] = 0;
 		check_line_objects(&*i, line);
 		line = (free (line), get_next_line(i[4]));
 	}
 	(free (line), close (i[4]));
-	if (i[1] != 1 || i[2] == 0 || i[3] != 1)
+	if (i[1] != 1 || i[2] == 0 || i[3] != 1 || i[5] == -1)
 		return (-1);
 	return (0);
 }
