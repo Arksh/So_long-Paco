@@ -6,7 +6,7 @@
 /*   By: fraalmei <fraalmei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 12:41:15 by fraalmei          #+#    #+#             */
-/*   Updated: 2023/03/24 17:48:53 by fraalmei         ###   ########.fr       */
+/*   Updated: 2023/03/25 10:21:00 by fraalmei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,7 @@ void	put_map_to_window(t_prog data)
 		while (swap_x)
 		{
 			if (swap_x->img)
-				mlx_put_image_to_window(data.win.mlx_ptr, data.win.win_ptr, \
-					swap_x->img, data.win.size_img.width * \
-					(int)swap_x->cords.x, \
-					data.win.size_img.height * (int)swap_x->cords.y);
+				put_img(swap_x->img, swap_x->cords, &data);
 			swap_x = swap_x->east;
 		}
 		swap_y = swap_y->south;
@@ -77,14 +74,18 @@ void	put_objects_map(t_prog data)
 		while (swap_x)
 		{
 			if (swap_x->objt)
-			{
-				mlx_put_image_to_window(data.win.mlx_ptr, data.win.win_ptr, \
-					swap_x->objt->img, data.win.size_img.width * \
-					(int)swap_x->cords.x, data.win.size_img.height * \
-					(int)swap_x->cords.y);
-			}
+				put_img(swap_x->objt->img, swap_x->objt->cords, &data);
 			swap_x = swap_x->east;
 		}
 		swap_y = swap_y->south;
 	}
+}
+
+int	put_img(void *img, t_cords cords, t_prog *data)
+{
+	mlx_put_image_to_window(data->win.mlx_ptr, data->win.win_ptr, \
+				img, data->win.size_img.width * \
+				(int)cords.x, data->win.size_img.height * \
+				(int)cords.y);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: fraalmei <fraalmei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:19:49 by fraalmei          #+#    #+#             */
-/*   Updated: 2023/03/23 10:06:00 by fraalmei         ###   ########.fr       */
+/*   Updated: 2023/03/25 10:23:28 by fraalmei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,24 +54,18 @@ void	move_character(t_location *next, t_prog *data, char c, int i)
 
 	if (data->player->cords.x == data->exit->cords.x && \
 			data->player->cords.y == data->exit->cords.y)
-		mlx_put_image_to_window(data->win.mlx_ptr, data->win.win_ptr, \
-				data->exit->img, data->win.size_img.width * \
-				(int)data->exit->cords.x, data->win.size_img.height * \
-				(int)data->exit->cords.y);
+	{
+		put_img(data->player->loc->img, data->player->cords, data);
+		put_img(data->exit->img, data->exit->cords, data);
+	}
 	else
-		mlx_put_image_to_window(data->win.mlx_ptr, data->win.win_ptr, \
-				data->player->loc->img, data->win.size_img.width * \
-				(int)data->player->cords.x, data->win.size_img.height * \
-				(int)data->player->cords.y);
+		put_img(data->player->loc->img, data->player->cords, data);
 	data->player->cords = update_cords(data->player->cords, c, i);
 	swap = next;
 	next->objt = data->player;
 	data->player->loc->objt = NULL;
 	data->player->loc = swap;
-	mlx_put_image_to_window(data->win.mlx_ptr, data->win.win_ptr, \
-				data->player->img, data->win.size_img.width * \
-				(int)data->player->cords.x, data->win.size_img.height * \
-				(int)data->player->cords.y);
+	put_img(data->player->img, data->player->cords, data);
 }
 
 	// funtion to update the coordenates of the player when it moves

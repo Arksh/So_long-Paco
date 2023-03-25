@@ -6,7 +6,7 @@
 /*   By: fraalmei <fraalmei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 15:47:55 by fraalmei          #+#    #+#             */
-/*   Updated: 2023/03/23 11:54:44 by fraalmei         ###   ########.fr       */
+/*   Updated: 2023/03/25 10:30:10 by fraalmei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ char	*check_map_image(char i)
 {
 	if (i != '1')
 		return ("./textures/floor.xpm");
-	return (NULL);
+	return ("./textures/floor.xpm");
 }
 
 	// function to check the char of the map and return it file
