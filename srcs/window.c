@@ -6,7 +6,7 @@
 /*   By: fraalmei <fraalmei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 12:41:15 by fraalmei          #+#    #+#             */
-/*   Updated: 2023/03/25 10:53:37 by fraalmei         ###   ########.fr       */
+/*   Updated: 2023/03/25 15:00:59 by fraalmei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,7 @@ int	put_img(void *img, t_cords cords, t_prog *data)
 	if (!img)
 		exit_program(&data->win, 5);
 	mlx_put_image_to_window(data->win.mlx_ptr, data->win.win_ptr, \
-				img, data->win.size_img.width * \
-				(int)cords.x, data->win.size_img.height * \
-				(int)cords.y);
+				img, data->win.size_img.width * ((int)cords.x), \
+				data->win.size_img.height * ((int)cords.y));
 	return (0);
 }

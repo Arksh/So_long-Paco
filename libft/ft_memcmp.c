@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fraalmei <fraalmei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/10 08:12:10 by fraalmei          #+#    #+#             */
-/*   Updated: 2023/03/28 10:01:30 by fraalmei         ###   ########.fr       */
+/*   Created: 2022/03/31 15:45:43 by fraalmei          #+#    #+#             */
+/*   Updated: 2022/08/10 13:58:20 by fraalmei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <so_long.h>
+#include "libft.h"
 
-void	leaks(void)
+	// compare "n" chars of two strings
+	// return the diference with the two first diferent chars
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	system ("leaks -q so_long");
-}
-	//atexit(leaks);
+	const unsigned char		*d;
+	const unsigned char		*s;
 
-int	main(int argc, char **argv)
-{
-	t_prog	data;
-
-	if (argc != 2)
-		exit_program (NULL, 0);
-	data = read_map(*&argv[1]);
-	put_map_to_window(data);
-	put_objects_map(data);
-	mlx_key_hook(data.win.win_ptr, read_keys, &data);
-	mlx_hook(data.win.win_ptr, 17, 0, exit_program, &data.win);
-	mlx_loop(data.win.mlx_ptr);
+	if (0 == n || s1 == s2)
+		return (0);
+	d = s1;
+	s = s2;
+	while (n--)
+		if (*d++ != *s++)
+			return (*--d - *--s);
 	return (0);
 }

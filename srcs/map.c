@@ -6,7 +6,7 @@
 /*   By: fraalmei <fraalmei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 15:44:51 by fraalmei          #+#    #+#             */
-/*   Updated: 2023/03/25 10:02:08 by fraalmei         ###   ########.fr       */
+/*   Updated: 2023/03/28 10:01:51 by fraalmei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,32 +27,12 @@ t_prog	read_map(char *argv)
 	data.win = new_program(size_map, size_img, "So_long");
 	file = open(argv, O_RDONLY);
 	data.map = create_map(file, &data);
+	if (!data.map)
+		exit_program(&data.win, 1);
 	close (file);
 	if (check_path(data) == 1 || !data.map)
 		exit_program(&data.win, 1);
 	return (data);
-}
-
-	// function to create the map
-t_map	*create_map(int file, t_prog *data)
-{
-	t_location	*init;
-	char		*line;
-	t_cords		i;
-	int			c;
-
-	c = 0;
-	init = NULL;
-	line = get_next_line(file);
-	i.y = 0;
-	while (line)
-	{
-		i.x = 0;
-		c += read_map_line(line, data, &i, &init);
-		line = get_next_line(file);
-	}
-	free (line);
-	return (new_map(init, i, c));
 }
 
 	// funtion to read a line of the map
@@ -84,6 +64,28 @@ int	read_map_line(char *ln, t_prog *dat, t_cords *i, t_location **init)
 	return (c);
 }
 
+	// function to create the map
+t_map	*create_map(int file, t_prog *data)
+{
+	t_location	*init;
+	char		*line;
+	t_cords		i;
+	int			c;
+
+	c = 0;
+	init = NULL;
+	line = get_next_line(file);
+	i.y = 0;
+	while (line)
+	{
+		i.x = 0;
+		c += read_map_line(line, data, &i, &init);
+		line = get_next_line(file);
+	}
+	free (line);
+	return (new_map(init, i, c));
+}
+
 	// funtion to create the map structure
 t_map	*new_map(t_location *init, t_cords cords, int collectables)
 {
@@ -94,19 +96,4 @@ t_map	*new_map(t_location *init, t_cords cords, int collectables)
 	map->cords = cords;
 	map->collectables = collectables;
 	return (map);
-}
-
-	// funtion to detect the player and exit locations
-void	detect_p_e(t_prog *data, char c, t_object *objt, t_location *loc)
-{
-	if (c == 'P')
-	{
-		data->player = objt;
-		data->player->loc = loc;
-	}
-	else if (c == 'E')
-	{
-		data->exit = objt;
-		data->exit->loc = loc;
-	}
 }

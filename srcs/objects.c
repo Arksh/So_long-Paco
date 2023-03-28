@@ -6,7 +6,7 @@
 /*   By: fraalmei <fraalmei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 15:32:43 by fraalmei          #+#    #+#             */
-/*   Updated: 2023/03/24 17:52:19 by fraalmei         ###   ########.fr       */
+/*   Updated: 2023/03/25 14:58:30 by fraalmei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,20 @@ void	check_exit(t_location loc, t_prog *data)
 		loc.img = NULL;
 		loc.name = '0';
 		exit_program(&data->win, 3);
+	}
+}
+
+	// funtion to detect the player and exit locations
+void	detect_p_e(t_prog *data, char c, t_object *objt, t_location *loc)
+{
+	if (c == 'P')
+	{
+		data->player = objt;
+		data->player->loc = loc;
+	}
+	else if (c == 'E')
+	{
+		data->exit = objt;
+		data->exit->loc = loc;
 	}
 }

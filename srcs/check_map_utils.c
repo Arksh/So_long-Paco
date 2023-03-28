@@ -6,7 +6,7 @@
 /*   By: fraalmei <fraalmei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 08:55:53 by fraalmei          #+#    #+#             */
-/*   Updated: 2023/03/25 09:38:04 by fraalmei         ###   ########.fr       */
+/*   Updated: 2023/03/28 10:01:33 by fraalmei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,9 @@ int	flooding_map(t_location *loc, char c)
 	int			i;
 
 	i = 0;
-	if (loc->objt && loc->objt->name != '1')
+	if (loc->objt && loc->objt->name != '1' && loc->name != 'X')
 	{
-		if (loc->objt->name == c && loc->name == '0')
+		if (loc->objt->name == c)
 			i++;
 		i += flood_map(loc, c);
 	}

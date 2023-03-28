@@ -6,7 +6,7 @@
 /*   By: fraalmei <fraalmei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 15:47:55 by fraalmei          #+#    #+#             */
-/*   Updated: 2023/03/25 10:30:10 by fraalmei         ###   ########.fr       */
+/*   Updated: 2023/03/25 15:24:48 by fraalmei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,9 +99,7 @@ char	*check_object_image(char i)
 		return ("./textures/player.xpm");
 	else if (i == 'C')
 		return ("./textures/key.xpm");
-	else if (i == 'O')
-		return ("./textures/door_closed.xpm");
 	else if (i == 'E')
-		return ("./textures/door_open.xpm");
+		return ("./textures/door.xpm");
 	return (NULL);
 }

@@ -1,34 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fraalmei <fraalmei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/10 08:12:10 by fraalmei          #+#    #+#             */
-/*   Updated: 2023/03/28 10:01:30 by fraalmei         ###   ########.fr       */
+/*   Created: 2022/06/01 09:12:05 by fraalmei          #+#    #+#             */
+/*   Updated: 2023/03/23 13:29:46 by fraalmei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <so_long.h>
+#include "libft.h"
 
-void	leaks(void)
+int	main(int argc, char *argv[])
 {
-	system ("leaks -q so_long");
-}
-	//atexit(leaks);
+	int		file;
+	int		i;
+	int		l;
+	char	*c;
 
-int	main(int argc, char **argv)
-{
-	t_prog	data;
-
-	if (argc != 2)
-		exit_program (NULL, 0);
-	data = read_map(*&argv[1]);
-	put_map_to_window(data);
-	put_objects_map(data);
-	mlx_key_hook(data.win.win_ptr, read_keys, &data);
-	mlx_hook(data.win.win_ptr, 17, 0, exit_program, &data.win);
-	mlx_loop(data.win.mlx_ptr);
+	i = argc;
+	l = 0;
+	file = open(argv[1], O_RDONLY);
+	c = get_next_line(file);
+	while (l < 10)
+	{
+		ft_printf ("%i	%s", l++, c);
+		free (c);
+		c = get_next_line(file);
+	}
+	close(file);
 	return (0);
 }
+
+	//system ("leaks a.out");

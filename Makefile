@@ -6,7 +6,7 @@
 #    By: fraalmei <fraalmei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/10 09:46:21 by fraalmei          #+#    #+#              #
-#    Updated: 2023/03/23 12:14:23 by fraalmei         ###   ########.fr        #
+#    Updated: 2023/03/25 14:54:10 by fraalmei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,7 +65,7 @@ BIN_DIR		= bin
 SRC_DIR		= srcs
 SRCS		= main.c window.c map.c images.c locations.c check_map.c keys.c \
 	objects.c movement.c check_map_utils.c
-LIBFT_DIR 	= ../libft			# path to libft library
+LIBFT_DIR 	= libft				# path to libft library
 INCLUDE_DIR	= include			# path to headers
 ASSETS_DIR	= assets			# path to assets
 
