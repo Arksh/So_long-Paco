@@ -6,7 +6,7 @@
 #    By: fraalmei <fraalmei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/10 09:46:21 by fraalmei          #+#    #+#              #
-#    Updated: 2023/03/25 14:54:10 by fraalmei         ###   ########.fr        #
+#    Updated: 2023/03/31 17:44:13 by fraalmei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,16 +74,16 @@ OBJS = $(SRCS:%.c=$(BIN_DIR)/%.o)
 
 all: $(NAME)
 
-restart: $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) $(INCLUDES) $(LIBS) $(MLX_FLAGS) -o $(NAME)
-
 $(NAME): $(BIN) $(OBJS) | libs
+	@echo "\033[0;32mCompiling so_long..."
 	$(CC) $(CFLAGS) $(OBJS) $(LIBS) $(MLX_FLAGS) -o $(NAME)
+	@echo "\n\033[0mDone !"
 
 #	Objects construction
 $(OBJS): $(BIN_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(@D)
-	@$(CC) -g $(CFLAGS) $(INCLUDES) -c $< -o $@
+	@printf "\033[0;33mGenerating minishell objects... %-33.33s\r" $@
+	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 #	Libraries compile
 libs:
@@ -99,15 +99,24 @@ cbuild:
 	$(RM) -r $(BIN_DIR)
 
 clean:
-	$(RM) $(OBJS)
+	@echo "\033[0;31mCleaning libft..."
 	make clean -C $(LIBFT_DIR)
+	@echo "\033[0;31mCleaning mlx..."
 	make clean -C $(MLX_DIR)
-	$(RM) -r $(BIN_DIR)
+	@echo "\nRemoving binaries..."
+	@$(RM) $(OBJS)
+	@$(RM) -r $(BIN_DIR)
+	@echo "\033[0m"
 
 fclean: clean
-	make fclean -C $(LIBFT_DIR)
-	make fclean -C $(MLX_DIR)
-	$(RM) $(NAME)
+	@echo "\033[0;31mFcleaning libft..."
+	@make fclean -C $(LIBFT_DIR)
+	@echo "\033[0;31mFcleaning mlx..."
+	@make fclean -C $(MLX_DIR)
+	@echo "\nDeleting executable..."
+	@$(RM) $(NAME)
+	@echo "\033[0m"
+
 
 show:
 	@printf "UNAME		: $(UNAME)\n"

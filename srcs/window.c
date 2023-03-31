@@ -6,7 +6,7 @@
 /*   By: fraalmei <fraalmei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 12:41:15 by fraalmei          #+#    #+#             */
-/*   Updated: 2023/03/25 15:00:59 by fraalmei         ###   ########.fr       */
+/*   Updated: 2023/03/31 17:36:16 by fraalmei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@ t_win	new_program(t_size map, t_size img, char *str)
 	return ((t_win){mlx_ptr, mlx_new_window(mlx_ptr, map.width, map.height, \
 		str), map, img});
 }
+		// another more modern form to create a struct
+	/* return ((t_win){.mlx_ptr = mlx_ptr, .win_ptr = mlx_new_window(mlx_ptr, \
+	map.width, map.height, str), .size_map = map, .size_img = img}); */
 
 	// function to exit the program
 int	exit_program(t_win *window, int i)

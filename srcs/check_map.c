@@ -6,7 +6,7 @@
 /*   By: fraalmei <fraalmei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 16:04:16 by p                 #+#    #+#             */
-/*   Updated: 2023/03/28 09:26:29 by fraalmei         ###   ########.fr       */
+/*   Updated: 2023/03/28 13:33:03 by fraalmei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	check_file(char *argv)
 {
 	int			file;
 
-	if (ft_strnstr(argv, ".ber", ft_strlen(argv)) == 0)
+	if (ft_str_last_cmp(argv, ".ber"))
 		return (-1);
 	file = open(argv, O_RDONLY);
 	if (file < 0 || read(file, 0, 0) < 0)
