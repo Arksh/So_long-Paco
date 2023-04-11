@@ -6,7 +6,7 @@
 #    By: fraalmei <fraalmei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/10 09:46:21 by fraalmei          #+#    #+#              #
-#    Updated: 2023/03/31 17:44:13 by fraalmei         ###   ########.fr        #
+#    Updated: 2023/04/10 10:21:12 by fraalmei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,7 +82,7 @@ $(NAME): $(BIN) $(OBJS) | libs
 #	Objects construction
 $(OBJS): $(BIN_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(@D)
-	@printf "\033[0;33mGenerating minishell objects... %-33.33s\r" $@
+	@printf "\033[0;33mGenerating so_long objects... %-33.33s\r" $@
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 #	Libraries compile
