@@ -87,7 +87,7 @@ char	*check_map_image(char i)
 {
 	if (i != '1')
 		return ("./textures/floor.xpm");
-	return (NULL);
+	return ("./textures/floor.xpm");
 }
 
 	// function to check the char of the map and return it file
