@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fraalmei <fraalmei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/10 08:12:07 by fraalmei          #+#    #+#             */
-/*   Updated: 2023/03/23 11:54:14 by fraalmei         ###   ########.fr       */
+/*   Created: 2022/03/31 15:45:43 by fraalmei          #+#    #+#             */
+/*   Updated: 2022/08/10 13:58:20 by fraalmei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-# include <libft.h>
-# include <mlx.h>
+	// compare "n" chars of two strings
+	// return the diference with the two first diferent chars
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
+{
+	const unsigned char		*d;
+	const unsigned char		*s;
 
-# include <structs.h>
-# include <keys.h>
-# include <functions.h>
-
-#endif
+	if (0 == n || s1 == s2)
+		return (0);
+	d = s1;
+	s = s2;
+	while (n--)
+		if (*d++ != *s++)
+			return (*--d - *--s);
+	return (0);
+}

@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fraalmei <fraalmei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/10 08:12:07 by fraalmei          #+#    #+#             */
-/*   Updated: 2023/03/23 11:54:14 by fraalmei         ###   ########.fr       */
+/*   Created: 2022/03/21 10:41:59 by fraalmei          #+#    #+#             */
+/*   Updated: 2022/08/10 13:33:42 by fraalmei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
-
-# include <libft.h>
-# include <mlx.h>
-
-# include <structs.h>
-# include <keys.h>
-# include <functions.h>
-
-#endif
+	//check if the char is printable
+int	ft_isprint(int c)
+{
+	if (c >= 32 && c <= 126)
+		return (1);
+	return (0);
+}

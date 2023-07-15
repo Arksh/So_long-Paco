@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fraalmei <fraalmei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/10 08:12:07 by fraalmei          #+#    #+#             */
-/*   Updated: 2023/03/23 11:54:14 by fraalmei         ###   ########.fr       */
+/*   Created: 2022/03/31 14:54:18 by fraalmei          #+#    #+#             */
+/*   Updated: 2022/08/10 16:21:48 by fraalmei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-# include <libft.h>
-# include <mlx.h>
-
-# include <structs.h>
-# include <keys.h>
-# include <functions.h>
-
-#endif
+	// find the first coincidence of 'c' in "s"
+	// returning a ponter to this position
+char	*ft_strchr(const char *s, int c)
+{
+	while (*s)
+	{
+		if (*s == (unsigned char)c)
+			return ((char *)s);
+		s++;
+	}
+	if (*s == (unsigned char)c)
+		return ((char *)s);
+	return (NULL);
+}

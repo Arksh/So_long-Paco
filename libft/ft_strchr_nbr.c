@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_strchr_nbr.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fraalmei <fraalmei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/10 08:12:07 by fraalmei          #+#    #+#             */
-/*   Updated: 2023/03/23 11:54:14 by fraalmei         ###   ########.fr       */
+/*   Created: 2022/08/05 13:34:28 by fraalmei          #+#    #+#             */
+/*   Updated: 2022/08/05 15:37:38 by fraalmei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-# include <libft.h>
-# include <mlx.h>
+	// same as ft_strchr but return a int where is the position of the char
+int	ft_strchr_nbr(const char *s, int c)
+{
+	int	i;
 
-# include <structs.h>
-# include <keys.h>
-# include <functions.h>
-
-#endif
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == c)
+			return (++i);
+		i++;
+	}
+	return (-1);
+}

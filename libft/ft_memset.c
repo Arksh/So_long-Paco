@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fraalmei <fraalmei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/10 08:12:07 by fraalmei          #+#    #+#             */
-/*   Updated: 2023/03/23 11:54:14 by fraalmei         ###   ########.fr       */
+/*   Created: 2022/03/22 10:24:44 by fraalmei          #+#    #+#             */
+/*   Updated: 2023/03/23 13:38:01 by fraalmei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-# include <libft.h>
-# include <mlx.h>
+	// memset fill "len" slots of "dest" with characters "c"
+void	*ft_memset(void *dest, int c, size_t len)
+{
+	size_t			j;
+	unsigned char	*ptr;
 
-# include <structs.h>
-# include <keys.h>
-# include <functions.h>
-
-#endif
+	j = -1;
+	ptr = dest;
+	while (++j < len)
+		ptr[j] = c;
+	return (dest);
+}

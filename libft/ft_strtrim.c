@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fraalmei <fraalmei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/10 08:12:07 by fraalmei          #+#    #+#             */
-/*   Updated: 2023/03/23 11:54:14 by fraalmei         ###   ########.fr       */
+/*   Created: 2022/03/25 19:14:34 by fraalmei          #+#    #+#             */
+/*   Updated: 2022/08/10 16:42:58 by fraalmei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-# include <libft.h>
-# include <mlx.h>
+	// erase all chars of "s1" at start or end of "set"
+	// and return the result
+char	*ft_strtrim(char const *s1, char const *set)
+{
+	char			*s;
+	unsigned int	i;
 
-# include <structs.h>
-# include <keys.h>
-# include <functions.h>
-
-#endif
+	if (set == NULL || s1 == NULL)
+		return (NULL);
+	while (*s1 && ft_strchr(set, *s1))
+		s1++;
+	i = ft_strlen(s1);
+	while (i && ft_strchr(set, s1[i]))
+		i--;
+	s = ft_substr(s1, 0, i + 1);
+	return ((char *)s);
+}

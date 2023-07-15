@@ -1,23 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fraalmei <fraalmei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/10 08:12:07 by fraalmei          #+#    #+#             */
-/*   Updated: 2023/03/23 11:54:14 by fraalmei         ###   ########.fr       */
+/*   Created: 2022/03/21 18:38:03 by fraalmei          #+#    #+#             */
+/*   Updated: 2022/08/10 16:34:35 by fraalmei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-# include <libft.h>
-# include <mlx.h>
+	// copy "src" and concatenate to "dst"
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+{
+	size_t			j;
+	char			*d;
+	const char		*s;
 
-# include <structs.h>
-# include <keys.h>
-# include <functions.h>
-
-#endif
+	j = 0;
+	d = dst;
+	s = src;
+	if (dstsize < 1)
+		return (ft_strlen(s));
+	while (s[j] && j < dstsize - 1)
+	{
+		d[j] = s[j];
+		j++;
+	}
+	d[j] = '\0';
+	return (ft_strlen(s));
+}
