@@ -6,7 +6,7 @@
 /*   By: fraalmei <fraalmei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 12:58:45 by fraalmei          #+#    #+#             */
-/*   Updated: 2023/03/28 13:34:46 by fraalmei         ###   ########.fr       */
+/*   Updated: 2023/01/31 14:45:14 by fraalmei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,5 @@ int		ft_strchr_nbr(const char *s, int c);
 
 		//extras
 size_t	ft_intlen(int n);
-int		ft_str_last_cmp(const char *haystack, const char *needle);
 
 #endif
